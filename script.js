@@ -1,5 +1,33 @@
 document.addEventListener('DOMContentLoaded', function() {
 
+    // ===== Проверка, является ли устройство мобильным =====
+    function isMobileDevice() {
+        return window.innerWidth <= 768;
+    }
+
+    // ===== Управление фиксацией шапки =====
+    const header = document.querySelector('.header');
+    
+    function handleHeaderSticky() {
+        if (isMobileDevice()) {
+            header.style.position = 'relative';
+            header.style.top = 'auto';
+            header.style.zIndex = 'auto';
+        } else {
+            header.style.position = 'sticky';
+            header.style.top = '0';
+            header.style.zIndex = '100';
+        }
+    }
+
+    // Применяем при загрузке
+    handleHeaderSticky();
+
+    // Применяем при изменении размера окна
+    window.addEventListener('resize', function() {
+        handleHeaderSticky();
+    });
+
     // ===== Плавная прокрутка для навигации =====
     const navLinks = document.querySelectorAll('.nav__menu a, .footer__col a[href^="#"]');
     
@@ -10,9 +38,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
                     e.preventDefault();
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+                    // Для мобильных учитываем высоту навигации
+                    const navHeight = document.querySelector('.nav')?.offsetHeight || 0;
+                    const headerHeight = document.querySelector('.header')?.offsetHeight || 0;
+                    const offset = isMobileDevice() ? headerHeight + navHeight : headerHeight + navHeight;
+                    
+                    const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                    const offsetPosition = elementPosition - offset - 10;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
                     });
                 }
             }
@@ -42,8 +78,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function highlightNav() {
         let current = '';
+        const headerHeight = document.querySelector('.header')?.offsetHeight || 0;
+        const navHeight = document.querySelector('.nav')?.offsetHeight || 0;
+        const totalOffset = headerHeight + navHeight + 10;
+
         sections.forEach(section => {
-            const sectionTop = section.offsetTop - 120;
+            const sectionTop = section.offsetTop - totalOffset;
             if (window.scrollY >= sectionTop) {
                 current = section.getAttribute('id');
             }
