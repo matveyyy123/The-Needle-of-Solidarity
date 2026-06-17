@@ -12,7 +12,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <header class="header">
+    <!-- НАВИГАЦИЯ СТАЛА НАВЕРХУ И ЗАКРЕПЛЕНА -->
+    <nav class="nav" id="top-nav">
+        <div class="container nav__container">
+            <ul class="nav__menu">
+                <li><a href="#about">Контакты</a></li>
+                <li><a href="#info">Инфо</a></li>
+                <li><a href="#reviews">Отзывы</a></li>
+                <li><a href="#prices">Цены</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="header" id="info">
         <div class="container header__container">
             <div class="header__logo">
                 <i class="fas fa-stitch logo-icon"></i>
@@ -42,18 +54,6 @@
             </div>
         </div>
     </header>
-
-    <nav class="nav">
-        <div class="container nav__container">
-            <ul class="nav__menu">
-                <li><a href="#about">Контакты</a></li>
-                <li><a href="#info">Инфо</a></li>
-                <li><a href="#reviews">Отзывы</a></li>
-                <li><a href="#prices">Цены</a></li>
-                <li><a href="#gallery">Фото</a></li>
-            </ul>
-        </div>
-    </nav>
 
     <main>
         <section class="hero">
@@ -106,7 +106,7 @@
                 <div class="services__grid">
                     <div class="service-card">
                         <div class="service-image">
-                            <img src="images/1.jpg" alt="Замена молнии на куртке">
+                            <img src="https://via.placeholder.com/400x300/eee/333?text=Замена+молнии+на+куртке" alt="Замена молнии на куртке">
                         </div>
                         <div class="service-info">
                             <h3>Замена молнии на куртке</h3>
@@ -155,7 +155,7 @@
                         </div>
                         <div class="service-info">
                             <h3>Штопка и восстановление кармана в джинсах</h3>
-                            <p class="price">от 600 ₽</p>
+                            <p class="price">600 ₽</p>
                         </div>
                     </div>
                     <div class="service-card">
@@ -231,11 +231,11 @@
                         </div>
                     </div>
                 </div>
-                <p class="services__ofert">Индивидуальный предприниматель Егорова Наталья Игоревна.</p>
+                <p class="services__ofert">Информация о ценах не является публичной офертой</p>
             </div>
         </section>
 
-        <section class="details" id="info">
+        <section class="details">
             <div class="container details__container">
                 <div class="details__block">
                     <h3>Парковка</h3>
